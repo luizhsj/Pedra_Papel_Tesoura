@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../widgets/game_button.dart';
-import '../widgets/score_board.dart';
+import '/widgets/game_button.dart';
+import '/widgets/score_board.dart';
+import '/services/game_logic.dart';
 
 class GameScreen extends StatefulWidget {
   @override
@@ -23,22 +24,6 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
-  String getRandomChoice() {
-    List<String> choices = ['Pedra', 'Papel', 'Tesoura'];
-    choices.shuffle();
-    return choices.first;
-  }
-
-  String getResult(String player, String computer) {
-    if (player == computer) return 'Empate';
-    if ((player == 'Pedra' && computer == 'Tesoura') ||
-        (player == 'Papel' && computer == 'Pedra') ||
-        (player == 'Tesoura' && computer == 'Papel')) {
-      return 'Você Ganhou';
-    }
-    return 'Você Perdeu';
-  }
-
   void updateScore(String result) {
     if (result == 'Você Ganhou') {
       playerScore++;
@@ -52,7 +37,7 @@ class _GameScreenState extends State<GameScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Pedra, Papel, Tesoura'),
-        backgroundColor: Colors.green, 
+        backgroundColor: Colors.green, // Define a cor verde no cabeçalho
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
